@@ -1,7 +1,5 @@
 # Walkablenormal.librenms
 
-![LibreNMS Logo](https://upload.wikimedia.org/wikipedia/commons/e/ec/LibreNMS-Logo.png)
-
 The LibreNMS collection is a set of Ansible modules that allow you to interact with the LibreNMS API. This collection contains modules for the GET, DELETE, and POST operations, giving you the ability to retrieve, delete, and create data in your LibreNMS installation.
 
 With the LibreNMS collection, you can automate tasks such as monitoring the health of your network devices, updating device configurations, and managing alerts. The collection also makes it easy to integrate LibreNMS with other automation tools, such as Ansible Tower, allowing you to manage your network infrastructure more efficiently.
