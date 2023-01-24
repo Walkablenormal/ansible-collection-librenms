@@ -64,12 +64,13 @@ def post_data(api_url, api_token, endpoint, json_data=None):
         response = requests.post(url, headers=headers, json=json.loads(json_data))
     else:
         response = requests.post(url, headers=headers)
-    if response.status_code not in [200,500]:
+    if response.status_code not in [200, 500]:
         if response.status_code == 500 and 'already exists' not in response.json["message"]:
             raise ValueError(f"Failed to query {endpoint}")
         else:
             pass
     return response.json()
+
 
 def run_module():
     module_args = {
@@ -87,5 +88,6 @@ def run_module():
             module.exit_json(changed=False, data=data)
     except Exception as e:
         module.fail_json(msg=str(e))
+
 
 run_module()

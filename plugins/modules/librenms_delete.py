@@ -60,9 +60,10 @@ def delete_data(api_url, api_token, endpoint):
     }
     url = f"{api_url}/api/v0/{endpoint}"
     response = requests.delete(url, headers=headers)
-    if response.status_code not in [200,404]:
+    if response.status_code not in [200, 404]:
         raise ValueError(f"Failed to delete {endpoint} from LibreNMS API")
     return response.json()
+
 
 def run_module():
     module_args = {
@@ -79,5 +80,6 @@ def run_module():
             module.exit_json(changed=False, data=data)
     except Exception as e:
         module.fail_json(msg=str(e))
+
 
 run_module()
