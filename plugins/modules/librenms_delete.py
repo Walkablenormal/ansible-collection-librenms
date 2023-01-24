@@ -30,18 +30,20 @@ options:
 '''
 
 EXAMPLES = r'''
-tasks
-  - name: Delete a device called 'server1'.
-    librenms_delete:
-      api_url: http://librenms.example
-      api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      endpoint: devices/server1
+tasks:
+- name: Delete a device called 'server1'.
+  local_action:
+    module: walkablenormal.librenms.librenms_delete
+    api_url: http://librenms.example
+    api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    endpoint: devices/server1
 
-  - name: Delete a component with ID 4459 from the device called 'server1'.
-    librenms_delete:
-      api_url: http://librenms.example
-      api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      endpoint: devices/server1/components/4459
+- name: Delete a component with ID 4459 from the device called 'server1'.
+  local_action:
+    module: walkablenormal.librenms.librenms_delete
+    api_url: http://librenms.example
+    api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    endpoint: devices/server1/components/4459
 '''
 
 RETURN = r'''

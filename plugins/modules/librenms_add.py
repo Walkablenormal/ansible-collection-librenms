@@ -34,13 +34,14 @@ options:
 '''
 
 EXAMPLES = r'''
-tasks
-  - name: Add a devices called 'server1' that should be polled using SNMPv1 with 'public' as community.
-    librenms_add:
-      api_url: http://librenms.example
-      api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      endpoint: devices
-      json_data: {"hostname":"server1","version":"v1","community":"public"}
+tasks:
+- name: Add a devices called 'server1' that should be polled using SNMPv1 with 'public' as community.
+  local_action:
+    module: walkablenormal.librenms.librenms_add
+    api_url: http://librenms.example
+    api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    endpoint: devices
+    json_data: {"hostname":"server1","version":"v1","community":"public"}
 '''
 
 RETURN = r'''

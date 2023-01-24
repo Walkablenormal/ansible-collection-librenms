@@ -30,24 +30,27 @@ options:
 '''
 
 EXAMPLES = r'''
-tasks
-  - name: Get a list of all devices.
-    librenms_get:
-      api_url: http://librenms.example
-      api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      endpoint: devices
+tasks:
+- name: Get a list of all devices.
+  local_action:
+    module: walkablenormal.librenms.librenms_get  
+    api_url: http://librenms.example
+    api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    endpoint: devices
 
-  - name: Get a list of graphs of the device called 'server1'.
-    librenms_get:
-      api_url: http://librenms.example
-      api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      endpoint: devices/server1/graphs
+- name: Get a list of graphs of the device called 'server1'.
+  local_action:
+    module: walkablenormal.librenms.librenms_get
+    api_url: http://librenms.example
+    api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    endpoint: devices/server1/graphs
 
-  - name: Get a list of ports of the device called 'server1'.
-    librenms_get:
-      api_url: http://librenms.example
-      api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      endpoint: devices/server1/ports
+- name: Get a list of ports of the device called 'server1'.
+  local_action:
+    module: walkablenormal.librenms.librenms_get
+    api_url: http://librenms.example
+    api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    endpoint: devices/server1/ports
 '''
 
 RETURN = r'''
