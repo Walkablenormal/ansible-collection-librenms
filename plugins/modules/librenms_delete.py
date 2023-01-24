@@ -27,6 +27,10 @@ options:
         description: The endpoint which needs to be deleted.
         required: true
         type: str
+    ssl_verify:
+        description: Sets if the host should check if the SSL-certificate of the LibreNMS-server is valid.
+        required: false
+        type: bool
 '''
 
 EXAMPLES = r'''
@@ -56,12 +60,12 @@ from ansible.module_utils.basic import AnsibleModule
 import requests
 
 
-def delete_data(api_url, api_token, endpoint):
+def delete_data(api_url, api_token, endpoint, ssl_verify=False):
     headers = {
         "X-Auth-Token": api_token
     }
     url = f"{api_url}/api/v0/{endpoint}"
-    response = requests.delete(url, headers=headers)
+    response = requests.delete(url, headers=headers, verify=ssl_verify)
     if response.status_code not in [200, 404]:
         raise ValueError(f"Failed to delete {endpoint} from LibreNMS API")
     return response.json()
@@ -71,11 +75,12 @@ def run_module():
     module_args = {
         "api_url": {"type": "str", "required": True},
         "api_token": {"type": "str", "required": True},
-        "endpoint": {"type": "str", "required": True}
+        "endpoint": {"type": "str", "required": True},
+        "ssl_verify": {"type": "bool", "required": False}
     }
     module = AnsibleModule(argument_spec=module_args)
     try:
-        data = delete_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"])
+        data = delete_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params["ssl_verify"])
         if 'not found' not in data['message']:
             module.exit_json(changed=True, data=data)
         else:

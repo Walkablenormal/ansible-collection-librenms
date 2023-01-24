@@ -73,7 +73,7 @@ def get_data(api_url, api_token, endpoint, ssl_verify=False):
         "X-Auth-Token": api_token
     }
     url = f"{api_url}/api/v0/{endpoint}"
-    response = requests.get(url, headers=headers, verify=ssl_v erify)
+    response = requests.get(url, headers=headers, verify=ssl_verify)
     if response.status_code != 200:
         raise ValueError(f"Failed to get {endpoint} from LibreNMS API")
     return response.json()
