@@ -88,7 +88,7 @@ def run_module():
     }
     module = AnsibleModule(argument_spec=module_args)
     try:
-        data = get_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params["ssl_verify"])
+        data = get_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params.get("ssl_verify"))
         module.exit_json(changed=False, data=data)
     except Exception as e:
         module.fail_json(msg=str(e))

@@ -80,7 +80,7 @@ def run_module():
     }
     module = AnsibleModule(argument_spec=module_args)
     try:
-        data = delete_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params["ssl_verify"])
+        data = delete_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params.get("ssl_verify"))
         if 'not found' not in data['message']:
             module.exit_json(changed=True, data=data)
         else:
