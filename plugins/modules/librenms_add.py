@@ -54,6 +54,7 @@ from ansible.module_utils.basic import AnsibleModule
 import json
 import requests
 
+
 def post_data(api_url, api_token, endpoint, json_data=None):
     headers = {
         "X-Auth-Token": api_token
