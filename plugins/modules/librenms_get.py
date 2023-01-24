@@ -27,6 +27,10 @@ options:
         description: The endpoint (and optional filters) which needs to be queried.
         required: true
         type: str
+    ssl_verify:
+        description: Sets if the host should check if the SSL-certificate of the LibreNMS-server is valid.
+        required: false
+        type: bool
 '''
 
 EXAMPLES = r'''
@@ -64,12 +68,12 @@ from ansible.module_utils.basic import AnsibleModule
 import requests
 
 
-def get_data(api_url, api_token, endpoint):
+def get_data(api_url, api_token, endpoint, ssl_verify=False):
     headers = {
         "X-Auth-Token": api_token
     }
     url = f"{api_url}/api/v0/{endpoint}"
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=ssl_v erify)
     if response.status_code != 200:
         raise ValueError(f"Failed to get {endpoint} from LibreNMS API")
     return response.json()
@@ -79,11 +83,12 @@ def run_module():
     module_args = {
         "api_url": {"type": "str", "required": True},
         "api_token": {"type": "str", "required": True},
-        "endpoint": {"type": "str", "required": True}
+        "endpoint": {"type": "str", "required": True},
+        "ssl_verify": {"type": "bool", "required": False}
     }
     module = AnsibleModule(argument_spec=module_args)
     try:
-        data = get_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"])
+        data = get_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params["ssl_verify"])
         module.exit_json(changed=False, data=data)
     except Exception as e:
         module.fail_json(msg=str(e))
