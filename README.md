@@ -79,3 +79,12 @@ tasks:
     endpoint: devices
     json_data: {"hostname":"server1","version":"v1","community":"public"}
 ```
+
+## Implemented endpoints
+
+Currently there are 4 endpoints that are not implemented because they require the use of the HTTP PATCH and PUT methods.
+
+ - edit_components 
+ - update_device_field 
+ - update_device_port_notes
+ - rename_device
