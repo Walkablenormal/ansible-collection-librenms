@@ -71,6 +71,7 @@ def get_data(api_url, api_token, endpoint):
         raise ValueError(f"Failed to get {endpoint} from LibreNMS API")
     return response.json()
 
+
 def run_module():
     module_args = {
         "api_url": {"type": "str", "required": True},
@@ -83,5 +84,6 @@ def run_module():
         module.exit_json(changed=False, data=data)
     except Exception as e:
         module.fail_json(msg=str(e))
+
 
 run_module()
