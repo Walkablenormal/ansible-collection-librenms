@@ -29,22 +29,22 @@ The `librenms_add` module allows you to create new resources or update existing 
 ```yaml
 tasks:
 - name: Get a list of all devices.
-  local_action: True
-  librenms_get:    
+  local_action:
+    module: walkablenormal.librenms.librenms_get  
     api_url: http://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices
 
 - name: Get a list of graphs of the device called 'server1'.
-  local_action: True
-  librenms_get:
+  local_action:
+    module: walkablenormal.librenms.librenms_get
     api_url: http://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices/server1/graphs
 
 - name: Get a list of ports of the device called 'server1'.
-  local_action: True
-  librenms_get:
+  local_action:
+    module: walkablenormal.librenms.librenms_get
     api_url: http://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices/server1/ports
@@ -55,15 +55,15 @@ tasks:
 ```yaml
 tasks:
 - name: Delete a device called 'server1'.
-  librenms_delete:
-    local_action: True
+  local_action:
+    module: walkablenormal.librenms.librenms_delete
     api_url: http://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices/server1
 
 - name: Delete a component with ID 4459 from the device called 'server1'.
-  librenms_delete:
-    local_action: True
+  local_action:
+    module: walkablenormal.librenms.librenms_delete
     api_url: http://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices/server1/components/4459
@@ -74,8 +74,8 @@ tasks:
 ```yaml
 tasks:
 - name: Add a devices called 'server1' that should be polled using SNMPv1 with 'public' as community.
-  local_action: True
-  librenms_add:
+  local_action:
+    module: walkablenormal.librenms.librenms_add
     api_url: http://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices
