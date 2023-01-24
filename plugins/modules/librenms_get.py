@@ -33,7 +33,7 @@ EXAMPLES = r'''
 tasks:
 - name: Get a list of all devices.
   local_action:
-    module: walkablenormal.librenms.librenms_get  
+    module: walkablenormal.librenms.librenms_get
     api_url: http://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices
