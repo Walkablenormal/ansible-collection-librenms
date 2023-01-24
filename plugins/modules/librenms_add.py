@@ -31,6 +31,10 @@ options:
         description: JSON-data which needs to be parsed to the LibreNMS API.
         required: false
         type: str
+    ssl_verify:
+        description: Sets if the host should check if the SSL-certificate of the LibreNMS-server is valid.
+        required: false
+        type: bool
 '''
 
 EXAMPLES = r'''
@@ -55,7 +59,7 @@ import json
 import requests
 
 
-def post_data(api_url, api_token, endpoint, json_data=None):
+def post_data(api_url, api_token, endpoint, json_data=None, ssl_verify=False):
     headers = {
         "X-Auth-Token": api_token
     }
@@ -63,7 +67,7 @@ def post_data(api_url, api_token, endpoint, json_data=None):
     if json_data:
         headers["Content-Type"] = "application/json"
         json_data = json_data.replace("'", '"')
-        response = requests.post(url, headers=headers, json=json.loads(json_data))
+        response = requests.post(url, headers=headers, json=json.loads(json_data), verify=ssl_verify)
     else:
         response = requests.post(url, headers=headers)
     if response.status_code not in [200, 500]:
@@ -79,11 +83,12 @@ def run_module():
         "api_url": {"type": "str", "required": True},
         "api_token": {"type": "str", "required": True},
         "endpoint": {"type": "str", "required": True},
-        "json_data": {"type": "str", "required": False}
+        "json_data": {"type": "str", "required": False},
+        "ssl_verify": {"type": "bool", "required": False}
     }
     module = AnsibleModule(argument_spec=module_args)
     try:
-        data = post_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params.get("json_data"))
+        data = post_data(module.params["api_url"], module.params["api_token"], module.params["endpoint"], module.params.get("json_data"), module.params.get("ssl_verify"))
         if 'already exists' not in data['message']:
             module.exit_json(changed=True, data=data)
         else:
