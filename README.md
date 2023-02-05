@@ -84,7 +84,7 @@ tasks:
 
 Currently there are 4 endpoints that are not implemented because they require the use of the HTTP PATCH and PUT methods.
 
- - edit_components 
- - update_device_field 
- - update_device_port_notes
- - rename_device
+- edit_components
+- update_device_field
+- update_device_port_notes
+- rename_device
