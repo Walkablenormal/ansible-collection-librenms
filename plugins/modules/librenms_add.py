@@ -59,7 +59,7 @@ import json
 import requests
 
 
-def post_data(api_url, api_token, endpoint, json_data=None, ssl_verify):
+def post_data(api_url, api_token, endpoint, ssl_verify, json_data=None):
     if not ssl_verify:
         ssl_verify = False
     headers = {
