@@ -68,7 +68,9 @@ from ansible.module_utils.basic import AnsibleModule
 import requests
 
 
-def get_data(api_url, api_token, endpoint, ssl_verify=False):
+def get_data(api_url, api_token, endpoint, ssl_verify):
+    if not ssl_verify:
+        ssl_verify = False
     headers = {
         "X-Auth-Token": api_token
     }

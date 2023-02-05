@@ -59,7 +59,9 @@ import json
 import requests
 
 
-def post_data(api_url, api_token, endpoint, json_data=None, ssl_verify=False):
+def post_data(api_url, api_token, endpoint, json_data=None, ssl_verify):
+    if not ssl_verify:
+        ssl_verify = False
     headers = {
         "X-Auth-Token": api_token
     }

@@ -33,12 +33,13 @@ tasks:
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices
 
-- name: Get a list of graphs of the device called 'server1'.
+- name: Get a list of graphs of the device called 'server1' from a LibreNMS server that has a valid SSL-certificate.
   local_action:
     module: walkablenormal.librenms.librenms_get
-    api_url: http://librenms.example
+    api_url: https://librenms.example
     api_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     endpoint: devices/server1/graphs
+    ssl_verify: true
 
 - name: Get a list of ports of the device called 'server1'.
   local_action:
